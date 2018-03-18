@@ -71,7 +71,7 @@ contract VirtLotto {
     }
     
     function generateWinner() private {
-        require(owner == msg.sender);
+        //require(owner == msg.sender);
         uint winningNumber = random();
         distributePrizes(winningNumber);
     }
@@ -87,7 +87,6 @@ contract VirtLotto {
                     count++;
                 }    
             }
-            //delete playerInfo[playerAddress];
         }
         
         if (count > 0) {
@@ -110,5 +109,9 @@ contract VirtLotto {
         
         totalBet = 0;
         numberOfBets = 0;
+        for (uint p = 0; p < players.length; p++) {
+            playerAddress = players[p];
+            delete(playerInfo[playerAddress]);
+        }
     }
 }
